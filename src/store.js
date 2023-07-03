@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
-      tasks: [],
+      tasks: localStorage.tasks ? JSON.parse(localStorage.tasks) : [],
       newTaskText: ''
     };
   },

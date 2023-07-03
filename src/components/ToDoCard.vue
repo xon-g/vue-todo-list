@@ -13,7 +13,7 @@ const tasks = computed(() => store.state.tasks)
 const hoveredItemId = ref('')
 const showInfo = ref(true)
 
-const completedTasks = computed(() => store.state.tasks.filter(task => task.completed));
+const completedTasks = computed(() => tasks.value.filter(task => task.completed));
 
 const handleShowInfo = () => {
   showInfo.value = !showInfo.value
@@ -21,22 +21,27 @@ const handleShowInfo = () => {
 
 const addTask = () => {
   store.commit('addTask')
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 };
 
 const updateTaskStatus = (task) => {
   store.commit('updateTaskStatus', task)
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 };
 
 const removeTask = (task) => {
   store.commit('removeTask', task)
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 }
 
 const deleteTasksDone = (task) => {
   store.commit('deleteTasksDone', task)
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 }
 
 const deleteAllTasks = () => {
   store.commit('deleteAllTasks')
+  localStorage.setItem('tasks', JSON.stringify(tasks.value))
 };
 
 const handleMouseEnter = (id) => {
