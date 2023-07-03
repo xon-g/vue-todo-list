@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-
+let count = 0
 const store = createStore({
   state() {
     return {
@@ -9,14 +9,16 @@ const store = createStore({
   },
   mutations: {
     addTask(state) {
+      localStorage.setItem('count', count)
       if (state.newTaskText) {
         state.tasks.push({
-          id: state.tasks.length + 1,
+          id: count + 1,
           text: state.newTaskText,
           completed: false
         });
         state.newTaskText = '';
       }
+      count++
     },
     updateTaskStatus(state, task) {
       task.completed = !task.completed;
