@@ -8,8 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.2.96",
+    "@mdi/react": "^1.6.1",
     "vue": "^3.3.4",
-    "vuetify": "^3.3.6"
+    "vuetify": "^3.3.6",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
