@@ -363,6 +363,7 @@ const handleCheckCircleColor = (task) => {
     position: absolute;
     right: 25px;
     bottom: 25px;
+    padding-left: 30px;
   }
 
   .show-info {
@@ -387,6 +388,10 @@ const handleCheckCircleColor = (task) => {
     background-color: white;
     width: 10px;
     height: 10px;
+  }
+
+  .close-circle {
+    scale: 130%;
   }
 
   .close-circle:hover {
