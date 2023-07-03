@@ -5,52 +5,42 @@ import TrashBin from './icons/TrashBin.vue'
 import PlusCircle from './icons/PlusCircle.vue'
 import CloseCircle from './icons/CloseCircle.vue'
 
+import { useStore } from 'vuex';
 
-const tasks = ref([
-    { id: 1, text: 'Task 1', completed: false },
-    { id: 2, text: 'Task 2', completed: true },
-    { id: 3, text: 'Task 3', completed: false }
-]);
+const store = useStore();
+const tasks = computed(() => store.state.tasks)
 
 const hoveredItemId = ref('')
 const showInfo = ref(true)
-const newTaskText = ref('') ;
 
-const completedTasks = computed(() => tasks.value.filter(task => task.completed));
+const completedTasks = computed(() => store.state.tasks.filter(task => task.completed));
 
 const handleShowInfo = () => {
-    showInfo.value = !showInfo.value
+  showInfo.value = !showInfo.value
 }
 
 const addTask = () => {
-  if (newTaskText.value) {
-    tasks.value.push({
-      id: tasks.value.length + 1,
-      text: newTaskText.value,
-      completed: false
-    });
-    newTaskText.value = '';
-  }
+  store.commit('addTask')
 };
 
 const updateTaskStatus = (task) => {
-  task.completed = !task.completed;
+  store.commit('updateTaskStatus', task)
 };
 
 const removeTask = (task) => {
-    tasks.value = tasks.value.filter(t => task.id!==t.id)
+  store.commit('removeTask', task)
 }
 
-const deleteTasksDone = () => {
-    tasks.value = tasks.value.filter(task => !task.completed)
+const deleteTasksDone = (task) => {
+  store.commit('deleteTasksDone', task)
 }
 
 const deleteAllTasks = () => {
-  tasks.value = [];
+  store.commit('deleteAllTasks')
 };
 
 const handleMouseEnter = (id) => {
-    hoveredItemId.value = id
+  hoveredItemId.value = id
 }
 const handleMouseLeave = (id) => {
     if (hoveredItemId.value === id) {
@@ -110,7 +100,7 @@ const handleCheckCircleColor = (task) => {
           <!-- New Task Input -->
           <div class="new-task-input">
             <div>
-                <input type="text" v-model="newTaskText" placeholder="New task">
+                <input type="text" v-model="$store.state.newTaskText" placeholder="New task">
                 <PlusCircle
                   class="plus-circle"
                   color="#246CAA"

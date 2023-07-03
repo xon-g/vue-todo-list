@@ -3,11 +3,7 @@ import { createStore } from 'vuex';
 const store = createStore({
   state() {
     return {
-      tasks: [
-        { id: 1, text: 'Task 1', completed: false },
-        { id: 2, text: 'Task 2', completed: true },
-        { id: 3, text: 'Task 3', completed: false }
-      ],
+      tasks: [],
       newTaskText: ''
     };
   },
@@ -24,6 +20,12 @@ const store = createStore({
     },
     updateTaskStatus(state, task) {
       task.completed = !task.completed;
+    },
+    removeTask(state, task) {
+      state.tasks = state.tasks.filter(t => task.id!==t.id)
+    },
+    deleteTasksDone(state) {
+      state.tasks = state.tasks.filter(task => !task.completed)
     },
     deleteAllTasks(state) {
       state.tasks = [];
