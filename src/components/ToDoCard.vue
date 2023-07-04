@@ -49,7 +49,7 @@ const handleMouseEnter = (id) => {
 }
 const handleMouseLeave = (id) => {
     if (hoveredItemId.value === id) {
-        hoveredItemId.value = ''
+        hoveredItemId.value = null
     }
 }
 
