@@ -105,7 +105,9 @@ const handleCheckCircleColor = (task) => {
           <!-- New Task Input -->
           <div class="new-task-input">
             <div>
-                <input type="text" v-model="$store.state.newTaskText" placeholder="New task">
+                <input type="text" v-model="$store.state.newTaskText"
+                  @keyup.enter=addTask
+                  placeholder="New task">
                 <PlusCircle
                   class="plus-circle"
                   color="#246CAA"
